@@ -18,4 +18,9 @@ public class Pair<K, V> {
         return v;
     }
 
+    @Override
+    public String toString() {
+        return k + ":" + v;
+    }
+
 }
