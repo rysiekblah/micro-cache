@@ -8,5 +8,7 @@ bin
 .rest-shell.log
 spring-shell.log
 /target/
+/out/
+*.class
 *.iml
 .idea/
