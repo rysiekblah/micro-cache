@@ -1,11 +1,10 @@
 package com.kozlowst.microcache;
 
-import com.sun.org.apache.xpath.internal.operations.Bool;
 import org.junit.Test;
 
-import java.util.*;
-import java.util.function.Function;
-import java.util.stream.Collectors;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.containsInAnyOrder;
@@ -54,6 +53,11 @@ public class CacheTest {
 
         List<String> names = MetaDataUtils.getParamsAsList(delta, "clientName");
         assertEquals("client3", names.stream().findFirst().orElse(null));
+    }
+
+    @Test
+    public void testOneItem3Updates() {
+        Cache<Integer, Account> cache = new Cache<>(Account.class, "id");
     }
 
     static class Account {

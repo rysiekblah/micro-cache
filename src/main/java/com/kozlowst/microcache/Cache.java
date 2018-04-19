@@ -30,7 +30,7 @@ public class Cache<K, V> {
             Pair<K, MetaData> pair = add(item);
             metaData.add(pair.getValue());
             //noinspection unchecked
-            cache.put((K) pair.getKey(), item);
+            cache.put(pair.getKey(), item);
         }
 
         return metaData;
