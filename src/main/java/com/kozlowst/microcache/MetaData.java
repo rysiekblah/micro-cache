@@ -3,26 +3,24 @@ package com.kozlowst.microcache;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MetaData<T extends Pair> {
+import com.kozlowst.microcache.tuple.Tuples.Tuple2;
 
-    private List<T> data = new ArrayList<>();
+import static com.kozlowst.microcache.tuple.Tuples.tuple;
+
+public class MetaData {
+
+    private List<Tuple2> data = new ArrayList<>();
 
     protected void add(Object k, Object v) {
-        //noinspection unchecked
-        add((T) new Pair(k, v));
+        add(tuple(k, v));
     }
 
-    protected void add(T p) {
-        data.add(p);
+    protected void add(Tuple2 tuple) {
+        data.add(tuple);
     }
 
-    public List<T> getData() {
+    public List<Tuple2> getData() {
         return data;
-    }
-
-    @Override
-    public String toString() {
-        return "MetaData{" + data + '}';
     }
 
 }
