@@ -35,19 +35,29 @@ public class Cache<K, V> {
         List<MetaData> metaData = new ArrayList<>();
 
         for (V item : items) {
-            Tuple2<K, MetaData> pair = add(item);
+            Tuple2<K, MetaData> tuple = addItem(item);
             // ignore if only 1 item (id is always by default)
-            if (pair._2.getData().size() == 1) continue;
-            metaData.add(pair._2);
+            if (tuple._2.getData().size() == 1) continue;
+            metaData.add(tuple._2);
             //noinspection unchecked
-            cache.put(pair._1, item);
+            cache.put(tuple._1, item);
         }
 
         return metaData;
     }
 
+    public Optional<MetaData> add(V item) {
+        Tuple2<K, MetaData> tuple = addItem(item);
+        // ignore if only 1 item (id is always by default)
+        if (tuple._2.getData().size() > 1) {
+            cache.put(tuple._1, item);
+            return Optional.of(tuple._2);
+        }
+        return Optional.empty();
+    }
+
     @SuppressWarnings("SuspiciousMethodCalls")
-    public Tuple2<K, MetaData> add(V item) {
+    private Tuple2<K, MetaData> addItem(V item) {
         if (item == null) throw new IllegalArgumentException("Argument can not be null");
         try {
             MetaData data = new MetaData();

@@ -2,7 +2,6 @@ package com.kozlowst.microcache;
 
 import com.kozlowst.microcache.annotations.DeltaIgnore;
 import com.kozlowst.microcache.tuple.Tuples;
-import com.sun.org.apache.xpath.internal.operations.Bool;
 import org.junit.Test;
 
 import java.util.Arrays;
@@ -46,8 +45,49 @@ public class CacheTest {
         List<Long> accountNumbers = MetaDataUtils.getParamsAsList(delta, "number");
         assertThat(accountNumbers, containsInAnyOrder(1234566L, 22233344L));
 
-        List<Boolean> accountActiveFlgs = MetaDataUtils.getParamsAsList(delta, "active");
-        assertThat(accountActiveFlgs, containsInAnyOrder(true, true));
+        List<Boolean> accountActiveFlags = MetaDataUtils.getParamsAsList(delta, "active");
+        assertThat(accountActiveFlags, containsInAnyOrder(true, true));
+    }
+
+    @Test
+    public void testAddData() {
+
+        // Given
+        Cache<Integer, Account> cache = new Cache<>(Account.class);
+
+        // When
+        Optional<MetaData> metaData = cache.add(new Account(45, "client_1", 123456789L, true));
+
+        // Then
+        assertTrue(metaData.isPresent());
+        List<Tuples.Tuple2> data = metaData.get().getData();
+        assertEquals(4, data.size());
+
+        List<String> propsNames = metaData.get().getData().stream().map(x -> (String)x._1).collect(Collectors.toList());
+        assertThat(propsNames, containsInAnyOrder("id", "clientName", "number", "active"));
+
+    }
+
+    @Test
+    public void testUpdateAddOneItem() {
+
+        // Given
+        Cache<Integer, Account> cache = new Cache<>(Account.class);
+
+        // When
+        cache.add(new Account(45, "client_1", 123456789L, false));
+        Optional<MetaData> metaData = cache.add(new Account(45, "client_1", 123456789L, true));
+
+        // Then
+        assertTrue(metaData.isPresent());
+        List<Tuples.Tuple2> data = metaData.get().getData();
+        assertEquals(2, data.size());
+
+        List<String> propsNames = metaData.get().getData().stream().map(x -> (String)x._1).collect(Collectors.toList());
+        assertThat(propsNames, containsInAnyOrder("id", "active"));
+        boolean active = (boolean) metaData.get().getData().stream().filter(x -> x._1.equals("active")).collect(Collectors.toList()).get(0)._2;
+        assertTrue(active);
+
     }
 
     @Test
