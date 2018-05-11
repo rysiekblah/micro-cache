@@ -25,8 +25,21 @@ class Account {
 }
 ```
 
+## Ignore fields in delta calculation
+If you don't need particular fields to be considered in delta, you can exclude them using ```@DeltaIgnore``` annotation.
+
+```java
+class User {
+  private Integer id;
+  private String name;
+  @DeltaIgnore
+  private int loans;
+  private int accounts;
+````
+If there is a change ONLY in ```loans``` field, delta won't be calculated.
+
 # Tuples
-This library provides neat implementation for tuples, which you might need in case when you have to create simple bean object. This might be very useful in unit testing also.
+This library provides neat implementation for tuples, which you might need in case when you have to create simple bean object. This might be very useful in unit testing too I quess.
 There are twe versions, immutable and mutable. Related to immutability, if you have a tuple ```Tuple<Account> ``` you have to take care of ```Account``` immutability.
   
   Usage:
@@ -51,5 +64,6 @@ There are twe versions, immutable and mutable. Related to immutability, if you h
   
   # Contribution
   Everyone is welcome!
+  If you have any suggestions please email me or just create an issuse here.
   
   -- Tomasz
