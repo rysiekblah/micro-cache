@@ -1,5 +1,7 @@
 package com.kozlowst.microcache.tuple;
 
+import java.util.Objects;
+
 public class Tuples {
 
     @SuppressWarnings("unchecked")
@@ -21,6 +23,20 @@ public class Tuples {
         Tuple1(T1 _1) {
             this._1 = _1;
         }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+            Tuple1<?> tuple1 = (Tuple1<?>) o;
+            return Objects.equals(_1, tuple1._1);
+        }
+
+        @Override
+        public int hashCode() {
+
+            return Objects.hash(_1);
+        }
     }
 
     public static class Tuple2<T1, T2> {
@@ -29,6 +45,21 @@ public class Tuples {
         Tuple2(T1 _1, T2 _2) {
             this._1 = _1;
             this._2 = _2;
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+            Tuple2<?, ?> tuple2 = (Tuple2<?, ?>) o;
+            return Objects.equals(_1, tuple2._1) &&
+                    Objects.equals(_2, tuple2._2);
+        }
+
+        @Override
+        public int hashCode() {
+
+            return Objects.hash(_1, _2);
         }
     }
 
@@ -41,6 +72,22 @@ public class Tuples {
             this._1 = _1;
             this._2 = _2;
             this._3 = _3;
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+            Tuple3<?, ?, ?> tuple3 = (Tuple3<?, ?, ?>) o;
+            return Objects.equals(_1, tuple3._1) &&
+                    Objects.equals(_2, tuple3._2) &&
+                    Objects.equals(_3, tuple3._3);
+        }
+
+        @Override
+        public int hashCode() {
+
+            return Objects.hash(_1, _2, _3);
         }
     }
 
@@ -55,6 +102,23 @@ public class Tuples {
             this._2 = _2;
             this._3 = _3;
             this._4 = _4;
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+            Tuple4<?, ?, ?, ?> tuple4 = (Tuple4<?, ?, ?, ?>) o;
+            return Objects.equals(_1, tuple4._1) &&
+                    Objects.equals(_2, tuple4._2) &&
+                    Objects.equals(_3, tuple4._3) &&
+                    Objects.equals(_4, tuple4._4);
+        }
+
+        @Override
+        public int hashCode() {
+
+            return Objects.hash(_1, _2, _3, _4);
         }
     }
 
@@ -71,6 +135,24 @@ public class Tuples {
             this._3 = _3;
             this._4 = _4;
             this._5 = _5;
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+            Tuple5<?, ?, ?, ?, ?> tuple5 = (Tuple5<?, ?, ?, ?, ?>) o;
+            return Objects.equals(_1, tuple5._1) &&
+                    Objects.equals(_2, tuple5._2) &&
+                    Objects.equals(_3, tuple5._3) &&
+                    Objects.equals(_4, tuple5._4) &&
+                    Objects.equals(_5, tuple5._5);
+        }
+
+        @Override
+        public int hashCode() {
+
+            return Objects.hash(_1, _2, _3, _4, _5);
         }
     }
 
@@ -89,6 +171,25 @@ public class Tuples {
             this._4 = _4;
             this._5 = _5;
             this._6 = _6;
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+            Tuple6<?, ?, ?, ?, ?, ?> tuple6 = (Tuple6<?, ?, ?, ?, ?, ?>) o;
+            return Objects.equals(_1, tuple6._1) &&
+                    Objects.equals(_2, tuple6._2) &&
+                    Objects.equals(_3, tuple6._3) &&
+                    Objects.equals(_4, tuple6._4) &&
+                    Objects.equals(_5, tuple6._5) &&
+                    Objects.equals(_6, tuple6._6);
+        }
+
+        @Override
+        public int hashCode() {
+
+            return Objects.hash(_1, _2, _3, _4, _5, _6);
         }
     }
 
@@ -109,6 +210,26 @@ public class Tuples {
             this._5 = _5;
             this._6 = _6;
             this._7 = _7;
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+            Tuple7<?, ?, ?, ?, ?, ?, ?> tuple7 = (Tuple7<?, ?, ?, ?, ?, ?, ?>) o;
+            return Objects.equals(_1, tuple7._1) &&
+                    Objects.equals(_2, tuple7._2) &&
+                    Objects.equals(_3, tuple7._3) &&
+                    Objects.equals(_4, tuple7._4) &&
+                    Objects.equals(_5, tuple7._5) &&
+                    Objects.equals(_6, tuple7._6) &&
+                    Objects.equals(_7, tuple7._7);
+        }
+
+        @Override
+        public int hashCode() {
+
+            return Objects.hash(_1, _2, _3, _4, _5, _6, _7);
         }
     }
 
